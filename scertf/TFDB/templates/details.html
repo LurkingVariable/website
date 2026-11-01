@@ -1,0 +1,123 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<!----Aaron Spivak ---->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>ScerTF</title>
+<link rel="stylesheet" type="text/css" href="{{ TEMPLATE_URL }}long_form.css" media="all">
+<script type="text/javascript" src="{{ TEMPLATE_URL }}long_form.js"></script>
+
+</head>
+<body id="main_body" >
+	
+	<img id="top" src="{{ TEMPLATE_URL }}top.png" alt="">
+	<div id="form_container"><table align="center">
+	  <tr>
+	    <td width="120"><a href="/ScerTF/"><center>Home</center></a></td>
+		<td width="120"><a href="/ScerTF/browse/"><center>Browse</center></a></td>
+		<td width="120"><a href="/ScerTF/download/"><center>Download</center></a></td>
+		<td width="120"><a href="/ScerTF/about/"><center>About</center></a></td>
+		<td width="120"><a href="/ScerTF/references/"><center>Data Sources</center></a></td>
+	  </tr></table>
+	</div>
+	<div id="form_container">
+	<h1>ScerTF</h1>
+    <form enctype="multipart/form-data" method="get" action="/ScerTF/matrix/">
+{% if bests %}
+	<center><h2>Details for {{ query }}</strong></h2></center>
+	<p>
+	The Table below describes all of the matrices annotated to {{ query }} in this database.  For each individual matrix, we provide several metrics related to the performance of that matrix in accurately representing the DNA binding specificity of the annotated transcription factor.
+	The Fisher's p-value represents the probability that the recommended matrix identified {{query}}-bound promoters by random chance.  If no experimental data exists for this particular TF, the field is labeled as "No Data".  In addition to benchmarking against high-throughput experimental data, 
+	we also inform our recommendations based on matrix information content, length, and corroboration by experimental studies of individual of cis-regulatory sequences.
+    <br><br>Each individual matrix can be downloaded as a position count matrix (PCM), position frequency matrix (PFM), or position weight matrix (PWM).  Click on the appropriate button in the left column to download the desired matrix. 
+	<br><br>Also provided is a recommended cutoff to use when scanning a genome for regulatory sequences with the provided position weight matrix.  An optimal cutoff was identified for each position weight matrix that provides the greatest discriminative power to distinguish between bound and unbound sequences in available ChIP experiments.
+	</p>
+	<table border="1" cellpadding="1" cellspacing="2" align="center">
+	<tr><td width="750" colspan="3"><center><strong>Recommended Matrix:</strong><br><a href="/ScerTF/about/">For information about selection criteria click here</a></tr>
+	<tr>
+	<td width="175"><center><h3>Source</h3></center></td>
+	<td width="400"><center><h3>Logo</h3></center></td>
+	<td width="150"><center><h3>Detailed Information</h3></center></td>
+    </tr>
+    {% for mx in bests %}
+      <tr>
+	    <td width="175"><center>{{ mx.name }}<br>
+		<br>Matrices:
+		<br><input id="{{mx.source}} {{mx.name}}" class="button_text" type="submit" name="{{mx.source}} {{mx.name}}" value="PFM" />
+		<br><input id="{{mx.source}} {{mx.name}}" class="button_text" type="submit" name="{{mx.source}} {{mx.name}}" value="PCM" />
+		<br><input id="{{mx.source}} {{mx.name}}" class="button_text" type="submit" name="{{mx.source}} {{mx.name}}" value="PWM" />
+		<br><br>Data Source:<br><a href="{{ mx.ref }}">{{mx.source}}</a>
+	     </center></td>
+        <td width="400"><img src= " {{ STATIC_URL }}{{ mx.logofile }}"></td>
+		<td width="150"><center><a href="/ScerTF/about/"><strong><u>Fisher's P-value</u></strong><br>{% if mx.pvalue %}{{ mx.pvalue }}{% else %}No Data{% endif %}</a>
+		<br><br><strong><u>Information Content</u></strong><br>{{ mx.ic|floatformat:3 }}
+		<br><br><strong><u>Max PWM Score</u></strong><br>{{ mx.max }}
+		<br><br><strong><u>Recommended PWM Cutoff</u></strong><br>{{ mx.cutoff }}
+		</center></td>
+	</tr>
+    <tr><td width="550" colspan="3">
+	<strong><center>Recommended Position Specific Matrix for {{mx.name}} comes from <a href="{{ mx.ref }}">{{mx.source}}</a></center></strong>
+	<div style="margin: 0px; padding:0px; clear: both; height: 6px">&nbsp;</div> <!-- This last part makes a small line break.. smalller than <br>-->
+	<strong>{{mx.name}}:</strong> {% if mx.description %}{{mx.description}}{% else %}Function Unknown{% endif %}
+	<br><strong>Aliases:</strong> {% if mx.alias %}{{mx.alias}}{% else %}No Aliases{% endif %}
+	</td></tr>
+	{% if mx.chip %}
+    <tr><td width="550" colspan="3"><strong>Genes Bound in <a href="http://www.ncbi.nlm.nih.gov/pubmed/15343339">{{ mx.name }} ChIP-chip</a>: </strong>{{mx.chip|safe}}
+	</td></tr>
+	{% endif %}
+	{% if mx.knockout %}
+    <tr><td width="550" colspan="3"><strong>Genes affected by <a href="http://www.ncbi.nlm.nih.gov/pubmed/20385592">{{ mx.name }} deletion</a>: </strong>{{mx.knockout|safe}}
+	</td></tr>
+	{% endif %}
+	{% if mx.pairs %}
+    <tr><td width="550" colspan="3"><strong>TF-TF interactions for {{ mx.name }}: </strong>{{mx.pairs|safe}}
+	{% ifnotequal mx.pairs "None" %}<br><a href="/ScerTF/Pairs/{{mx.name}}">Click here to see target gene co-expression data supporting TF-TF interaction predictions</a>
+	{% endifnotequal  %}
+	</td></tr>
+	{% endif %}
+	{% ifnotequal mx.note "NA" %}
+    <tr><td width="550" colspan="3"><strong><a href="http://www.yeastgenome.org/cgi-bin/locus.fpl?locus={{mx.name}}">{{ mx.note }}</a></strong>
+	</td></tr>
+	{% endifnotequal  %}
+    {% endfor %}
+	</table>
+{% endif %}
+{% if mxs %}
+	<br><br>
+	<table border="1" cellpadding="1" cellspacing="2" align="center">
+	<tr><td width="750" colspan="3"><center><strong>Additional Candidate Matrices:</strong></tr>
+	<tr>
+	<td width="175"><center><strong>Source</strong></center></td>
+	<td width="400"><center><strong>Logo</strong></center></td>
+	<td width="150"><center><strong>Detailed Information</strong></center></td>
+    </tr>
+    {% for mx in mxs %}
+      <tr>
+	    <td width="175"><center>{{ mx.name }}<br>
+		<br>Matrices:
+		<br><input id="{{mx.source}} {{mx.name}}" class="button_text" type="submit" name="{{mx.source}} {{mx.name}}" value="PFM" />
+		<br><input id="{{mx.source}} {{mx.name}}" class="button_text" type="submit" name="{{mx.source}} {{mx.name}}" value="PCM" />
+		<br><input id="{{mx.source}} {{mx.name}}" class="button_text" type="submit" name="{{mx.source}} {{mx.name}}" value="PWM" />
+		<br><br>Data Source:<br><a href="{{ mx.ref }}">{{mx.source}}</a>
+	     </center></td>
+		<td width="400"><img src= " {{ STATIC_URL }}{{ mx.logofile }}"></td>
+		<td width="150"><center><a href="/ScerTF/about/"><strong><u>Fisher's P-value</u></strong><br>{% if mx.pvalue %}{{ mx.pvalue }}{% else %}No Data{% endif %}</a>
+		<br><br><u>Information Content</u><br>{{ mx.ic|floatformat:3 }}
+		<br><br><u>Max PWM Score</u><br>{{ mx.max }}
+		<br><br><u>Recommended PWM Cutoff</u><br>{{ mx.cutoff }}
+		</center></td>
+ <!--       {% if mx.pvalue %}<td width="100"><center>{{ mx.pvalue }}</center></td>
+        {% else %}<td width="100"><center>No Data</center></td>
+        {% endif %}
+        <td width="100"><center>{{ mx.ic|floatformat:3 }}</center></td>
+        <td width="100"><center>{{ mx.cutoff }}</center></td>
+-->
+	</tr>
+    {% endfor %}
+	</table>
+    </form>	
+{% endif %}
+	</div>
+	<img id="bottom" src="{{ TEMPLATE_URL }}bottom.png" alt="">
+	</body>
+</html>

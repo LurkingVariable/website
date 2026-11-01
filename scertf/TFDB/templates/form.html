@@ -1,0 +1,100 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<!----Aaron Spivak ---->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="msvalidate.01" content="2A59A490A54E57DE84F4FD3D4A6EE315" />
+<title>ScerTF</title>
+<link rel="stylesheet" type="text/css" href="{{ TEMPLATE_URL }}form.css" media="all">
+<script type="text/javascript" src="{{ TEMPLATE_URL }}form.js"></script>
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-28511173-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+</head>
+<body id="main_body" >
+	
+	<img id="top" src="{{ TEMPLATE_URL }}top.png" alt="">
+	<div id="form_container"><table align="center">
+	  <tr>
+	    <td width="120"><a href="/ScerTF/"><center>Home</center></a></td>
+		<td width="120"><a href="/ScerTF/browse/"><center>Browse</center></a></td>
+		<td width="120"><a href="/ScerTF/download/"><center>Download</center></a></td>
+		<td width="120"><a href="/ScerTF/about/"><center>About</center></a></td>
+		<td width="120"><a href="/ScerTF/references/"><center>Data Sources</center></a></td>
+	  </tr></table>
+	</div>
+	<div id="form_container">
+	
+		<h1>ScerTF</h1>
+		<form enctype="multipart/form-data" method="get" action="/ScerTF/search/">
+		<div class="form_description">
+			<center><h2>ScerTF</h2></center><br>
+<p>ScerTF catalogs over 1,200 position weight matrices (PWMs) for 196 different yeast transcription factors.  We've curated 11 literature sources, benchmarked the published position-specific scoring matrices against in-vivo TF occupancy data and TF deletion experiments, and combined the most accurate models to produce a single collection of the best performing weight matrices for Saccharomyces cerevisiae.
+<p>ScerTF is useful for a wide range of problems, such as linking regulatory sites with transcription factors, identifying a transcription factor based on a user-input matrix, finding the genes bound/regulated by a particular TF, and finding regulatory interactions between transcription factors.
+<br><br>
+Enter a TF name to find the recommended matrix for a particular TF, or enter a nucleotide sequence to identify all TFs that could bind a particular region</p>
+			</div>						
+	    {% if errors %}
+	       <p> <ul>
+	           {% for error in errors %}
+	            <li><span style="color:firebrick"><strong>{{ error }}</strong></span></li>
+            	{% endfor %}
+	        </ul></p>
+	    {% endif %}
+
+			<ul >
+			<li id="li_1" >
+				<label class="description" for="q">Search for a TF name or DNA sequence: <small><a href="/ScerTF/example/seq/"> [Load example Sequence]</a></small></label> 
+				<div>
+				<input id="q" name="q" class="element text medium" type="text" maxlength="20" value="{{ seq }}"/>
+				<!--<input id="exampleSeq" class="button_text" type="submit" name="ex_seq" value="Load Example Sequence"/>-->
+				</div><p class="guidelines" id="guide_1"><small><strong>DNA sequences are limited to 20 bases</strong><br>Example Inputs: ABF1, GATAAG, ggctt</small></p> 
+			</li>
+			
+			<li id="li_2" >
+				<label class="description" for="element_2">Paste a matrix below in consensus format to search for similar TFs: <small><a href="/ScerTF/example/mx/"> [Load example Matrix]</a></small></label>
+				<div>
+				<textarea id="r" name="r" class="element textarea medium">{{ mx }}</textarea> 
+				</div><p class="guidelines" id="guide_2"><small><strong>Consensus Matrix Format:</strong><br>
+A | 0.515 0.030 0.064 0.687 0.044 0.117 0.382 <br>
+C | 0.087 0.028 0.885 0.056 0.561 0.182 0.178 <br>
+G | 0.317 0.045 0.024 0.190 0.024 0.164 0.138 <br> 
+T | 0.081 0.897 0.027 0.067 0.371 0.537 0.303  
+</small>
+                        </p> 
+			</li>
+<!--			<li id="li_3" >
+				<label class="description" for="s">Alternatively, upload your matrix as a file to search for similar TFs </label>
+				<div>
+				<input id="s" name="s" class="element file" type="file"/> 
+				</div>  
+			</li>
+-->
+			<center>
+			<input style="visibility:hidden; id="saveForm" class="button_text" type="submit" name="submit" value="Submit" />
+			<input id="clearForm" class="button_text" type="submit" name="clear" value="Clear" />
+			<input id="saveForm" class="button_text" type="submit" name="submit" value="Submit" /></center>
+                        </li>
+			</ul>
+		</form>	
+		<div id="footer">
+                       <br>Aaron T. Spivak and Gary D. Stormo
+                       <br><a href="http://dx.doi.org/10.1093/nar/gkr1180">http://dx.doi.org/10.1093/nar/gkr1180</a>
+                       <br><img src="http://ural.wustl.edu/ScerTF/static/56119726.Png" alt="">
+                       <br>
+                       <br>Citation: Spivak AT, Stormo GD (2012) ScerTF: a comprehensive database of benchmarked position weight matrices for Saccharomyces species. Nucleic Acids Res 40: D162.168
+                </div>
+	</div>
+	<img id="bottom" src="{{ TEMPLATE_URL }}bottom.png" alt="">
+	</body>
+</html>

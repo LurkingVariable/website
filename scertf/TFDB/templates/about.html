@@ -1,0 +1,90 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<!----Aaron Spivak ---->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>ScerTF</title>
+<link rel="stylesheet" type="text/css" href="{{ TEMPLATE_URL }}form.css" media="all">
+<script type="text/javascript" src="{{ TEMPLATE_URL }}form.js"></script>
+
+</head>
+<body id="main_body" >
+	
+	<img id="top" src="{{ TEMPLATE_URL }}top.png" alt="">
+	<div id="form_container"><table align="center">
+	  <tr>
+	    <td width="120"><a href="/ScerTF/"><center>Home</center></a></td>
+		<td width="120"><a href="/ScerTF/browse/"><center>Browse</center></a></td>
+		<td width="120"><a href="/ScerTF/download/"><center>Download</center></a></td>
+		<td width="120"><a href="/ScerTF/about/"><center>About</center></a></td>
+		<td width="120"><a href="/ScerTF/references/"><center>Data Sources</center></a></td>
+	  </tr></table>
+	</div>
+	<div id="form_container">
+	<h1>ScerTF</h1>
+	<form enctype="multipart/form-data" method="get" action="/ScerTF/search/">
+	<div class="form_description">
+	<center><h2>ScerTF</h2></center><br>
+<strong>Motivation</strong>
+<br><br>
+<p>In order to understand gene regulation, it is necessary to accurately identify transcription factor binding sites in the genome.  Over the past decade, numerous studies have been published that predict the DNA binding specificities of transcription factors (TFs) in Saccharomyces cerevisiae. Each of these studies relied on different experimental and computational strategies to generate models of DNA-protein interactions in the form of position-specific weight matrices (PWMs).  Each of the different methods is subject to different biases, which may produce accurate models of specificity for certain types of TFs but not others.  Because the binding specificities of yeast TFs have been intensively studied, there are multiple, often conflicting, PWMs for most TFs.  No single existing database provides a comprehensive repository of available PWMS, and there has been no systematic effort to identify the best PWM for each TF. 
+<p>The SwissRegulon database (1) is one repository of PWMs, but most models are derived only from phylogenetic footprinting and the database contains data for 72 TFs.  The Saccharomyces Cerevisiae Promoter Database (SCPD) (2) contains PWMs for just 24 factors.  The most recent version of JASPAR (3), is to date the most complete collection, with results for 176 unique yeast transcription factors.  The JASPAR curators collected PWMs from 5 different sources including SwissRegulon and SCPD, but prioritized the sources based on the curators’ personal perspectives.  A matrix from a low priority source was discarded if a high priority source already contained a matrix annotated to the same TF.  In many cases the prioritized source was a collection of matrices produced by various in-vitro binding assays (4).  Such assays are high-throughput and generally reliable, but are not guaranteed to provide the most accurate representation of a transcription factor’s binding specificity (5).  This is especially true for transcription factors that dimerize to bind DNA (4,5).
+<p>We created ScerTF, a curated database that incorporates position specific matrices derived from a variety of experimental and computational methods.  The database contains 1,226 matrices from eleven different sources, covering 196 different transcription factors.  For each transcription factor in the database, we evaluated the available matrices by comparing matrix-predicted TF binding sites against results from in-vivo ChIP occupancy (6) and TF deletion (7) experiments.   Based on this evaluation, we provide a compendium of the best-performing matrices and we also provide performance metrics for all matrices annotated to a particular TF. This allows the user to individually compare the recommended matrix with additional candidate matrices.  Because transcription factors bind degenerate sets of sequences, we have also used the ChIP-chip data to determine an optimal cutoff to use when searching for potential regulatory sites.  
+<p>In addition to curating datasets from the literature, we also developed a strategy to optimize a position weight matrix given a collection of matrices and applied this method to the transcription factors curated in the database.  Our strategy was able to generate matrices that outperformed the best existing PWMs in predicting TF occupancy for approximately 10% of the transcription factors in the database. 
+<br><br>
+<strong>Database Assembly and Curation</strong>
+<br><br>
+<p>To create ScerTF, we collected results from eleven different computational and experimental studies which report binding specificities of transcription factors in Saccharomyces cerevisiae.  These studies rely on different methods to infer DNA binding specificities, including phylogenetic footprinting(1,8), molecular modeling(9), gene expression analysis(10), in vitro binding assays(11), Chromatin Immunoprecipitation (ChIP) (6), DNA immunoprecipitation with microarray detection (DIP-ChIP) (4), and Protein Binding Microarrays (PBM) (4,12,13).  In addition, we incorporated the SCPD database (2) into our own database to evaluate the performance of its matrices and to assimilate these matrices into our alignment strategy.  Matrices from the commercially available TRANSFAC database were also evaluated using the same metrics, but are not made freely available in this database.  However, in all cases, the TRANSFAC PWMs were outperformed by matrices in at least one of the other datasets.  
+<p>For the Badis(4), Foat(10), Morozov(9), Zhu(12) and Zhao(13) datasets, the matrices generally have a core motif with high information content that is surrounded by uninformative flanking positions at the edges of the matrix.  These flanking nucleotides degrade the predictive ability of the PWM.  To ensure equitable comparison between datasets, if a matrix from one of these sources had low information content columns (IC<0.4) at either end of the matrix those columns were removed.  To standardize the naming system across the literature sources, we converted all matrix names to the common name for the transcription factor provided by the Saccharomyces Genome Database (14).  Matrix logos were generated using tools available from Lenhard and Wasserman (15).
+<br><br>
+<strong>Position Weight Matrix Assessment</strong>
+<br><br>
+<p>To evaluate the performance of each matrix, we obtained ChIP-chip binding data from a compendium of experiments performed by Harbison et al (6).   For each ChIP experiment, the matrices annotated to that transcription factor in the compiled database were used to predict which probes should be bound in the ChIP-chip data.  These predictions were compared with the observed occupancy in the ChIP experiment to evaluate each matrix using a Fisher’s exact test (16).   In the event that ChIP data was unavailable for a particular transcription factor, matrices were evaluated using data obtained from an analysis of transcription factor gene deletion mutants (7).  In this dataset, genes are annotated as either significantly up- or down-regulated in response to deletion of a particular transcription factor.  Each matrix annotated to a particular TF was used to predict which genes should be up/down-regulated in a deletion mutant strain for that transcription factor.  Predictions were compared with observed data using a Fisher’s exact test.  A few TFs lacked both immunoprecipitation data and gene deletion data; for these cases we used matrix information content to help decide among candidate matrices.  
+<br><br>
+<strong>Matrix Alignment</strong>
+<br><br>
+<p>The individual studies incorporated into this database all employed different experimental and computational strategies to determine the DNA binding specificity of yeast transcription factors.  Ideally, different methods should all accurately parameterize DNA-protein interactions and thus produce identical position weight matrices for a given transcription factor.  In actuality, however, each method is vulnerable to different biases and ultimately produces an approximation of a transcription factor’s true specificity.  In order to minimize the impact of artifacts introduced by individual methods, we devised a strategy to align and combine matrices annotated to the same TF across multiple studies.  We have implemented a “Glocal” alignment strategy to identify a common motif in two position frequency matrices, using the average log-likelihood ratio (ALLR)(17) as a measure of similarity between positions in the alignment.  As in a local alignment, we do not penalize overhangs when aligning matrices.  As in a global alignment, we require that a match must extend to the end of a matrix.  Additionally, we do not allow gaps when aligning two matrices.   Once an optimal alignment has been found, we combine the matrices by averaging the nucleotide frequencies at matched positions within the alignment; overhanging segments in the alignment that remain unmatched are averaged against the background nucleotide frequency of the S. cerevisiae genome.  The flanking positions of this long, aligned matrix are then trimmed to eliminate positions with low information content.  
+<p>The optimal alignment search is performed in two steps.  First, each individual matrix from the different datasets is scored on its ability to predict bound and unbound sequences in ChIP experiments (6) using a Fisher’s exact test.  The matrices are ranked by p-value and then the second best matrix is aligned against the first. Next, the aligned matrix is scored in the same way as the original matrices and added to a new set of candidate matrices.  Each additional matrix from the original set is aligned against all matrices with better performance, and the optimal alignment is then used to generate a new matrix.  This new aligned matrix is ranked and added to the set of candidate matrices.  The algorithm progresses through the original list of matrices until it is exhausted, and then identifies the aligned matrix with the best performance.  In most cases, the matrix produced from this procedure outperforms some, but not all of the original matrices.  However, for approximately 10% of all transcription factors in the database, the aligned matrix outperforms all of the matrices in the original dataset.  For one particular transcription factor, YAP3, none of the original matrices can significantly discriminate between bound and unbound probes in ChIP-chip experiments (lowest p-value = 0.487), but the aligned matrix can significantly predict YAP3 occupancy (p-value = 0.0224)
+<br><br>
+<strong>Determination of optimal Position Weight Matrix Cutoffs</strong>
+<br><br>
+<p>PWMs are commonly used to discover TF binding sites in the genome by scoring sequences based on how well they match the PWM.  Because transcription factors can bind degenerate sequences with a range of scores, it is necessary to select a cutoff to use when scoring a sequence to discriminate potential regulatory sequences from the background genomic sequence.  For each PWM, we identified an optimal cutoff that provides the greatest discriminative power to distinguish between bound and unbound sequences in available ChIP experiments (6).   For each weight matrix, we used a range of cutoff values to predict whether a given ChIP-chip probe would be bound by a transcription factor, and selected the cutoff that gave the most significant p-value in a fisher’s exact test.
+<br><br>
+<strong>Matrix and Nucleotide Sequence Search</strong>
+<br><br>
+<p>An essential feature of ScerTF is the ability to compare an input DNA sequence or PWM against the entire catalog of TF binding specificities.  The search feature that we have implemented allows users to query the database with a single cis-regulatory site or with a consensus-formatted matrix (18).  We score the sequence or matrix against every matrix in the database to produce a distribution of scores/alignments.  We then normalize the distribution and use a Z-test to identify candidate matrices with significantly greater similarity to the query than the rest of the database.  Although the JASPAR database has a search capability, it is unable to assign p-values to search results (3).
+<p>The sequence and matrix search capability extends the utility of our database beyond yeast research.  Any researcher studying transcriptional regulation in any organism can search this database for candidate matrices that closely match a cis-regulatory sequence or matrix produced by a motif discovery program.  Although the TFs in this database are from Saccharomyces cerevisiae, a matched S. cerevisiae TF can be used to identify the appropriate homolog in another organism of interest.  This strategy has been successfully employed in previous studies to transfer knowledge from a model organism to a less-well studied organism (19-21).  Yeast has been a major model organism for studies of transcriptional regulation, so its set of well-characterized TFs can be a key source of information about the behavior of homologous TFs in other organisms. 
+<br><br>
+<strong>References:</strong><br>
+<small>
+<br>1.	Pachkov, M., Erb, I., Molina, N. and van Nimwegen, E. (2007) SwissRegulon: a database of genome-wide annotations of regulatory sites. Nucleic Acids Res, 35, D127-131.
+<br>2.	Zhu, J. and Zhang, M.Q. (1999) SCPD: a promoter database of the yeast Saccharomyces cerevisiae. Bioinformatics, 15, 607-611.
+<br>3.	Portales-Casamar, E., Thongjuea, S., Kwon, A.T., Arenillas, D., Zhao, X., Valen, E., Yusuf, D., Lenhard, B., Wasserman, W.W. and Sandelin, A. JASPAR 2010: the greatly expanded open-access database of transcription factor binding profiles. Nucleic Acids Res, 38, D105-110.
+<br>4.	Badis, G., Chan, E.T., van Bakel, H., Pena-Castillo, L., Tillo, D., Tsui, K., Carlson, C.D., Gossett, A.J., Hasinoff, M.J., Warren, C.L. et al. (2008) A library of yeast transcription factor motifs reveals a widespread function for Rsc3 in targeting nucleosome exclusion at promoters. Mol Cell, 32, 878-887.
+<br>5.	Berger, M.F. and Bulyk, M.L. (2009) Universal protein-binding microarrays for the comprehensive characterization of the DNA-binding specificities of transcription factors. Nature protocols, 4, 393-411.
+<br>6.	Harbison, C.T., Gordon, D.B., Lee, T.I., Rinaldi, N.J., Macisaac, K.D., Danford, T.W., Hannett, N.M., Tagne, J.B., Reynolds, D.B., Yoo, J. et al. (2004) Transcriptional regulatory code of a eukaryotic genome. Nature, 431, 99-104.
+<br>7.	Reimand, J., Vaquerizas, J.M., Todd, A.E., Vilo, J. and Luscombe, N.M. (2010) Comprehensive reanalysis of transcription factor knockout expression data in Saccharomyces cerevisiae reveals many new targets. Nucleic Acids Res, 38, 4768-4777.
+<br>8.	MacIsaac, K.D., Wang, T., Gordon, D.B., Gifford, D.K., Stormo, G.D. and Fraenkel, E. (2006) An improved map of conserved regulatory sites for Saccharomyces cerevisiae. BMC Bioinformatics, 7, 113.
+<br>9.	Morozov, A.V. and Siggia, E.D. (2007) Connecting protein structure with predictions of regulatory sites. Proc Natl Acad Sci U S A, 104, 7068-7073.
+<br>10.	Foat, B.C., Tepper, R.G. and Bussemaker, H.J. (2008) TransfactomeDB: a resource for exploring the nucleotide sequence specificity and condition-specific regulatory activity of trans-acting factors. Nucleic Acids Res, 36, D125-131.
+<br>11.	Fordyce, P.M., Gerber, D., Tran, D., Zheng, J., Li, H., DeRisi, J.L. and Quake, S.R. De novo identification and biophysical characterization of transcription-factor binding sites with microfluidic affinity analysis. Nat Biotechnol, 28, 970-975.
+<br>12.	Zhu, C., Byers, K.J., McCord, R.P., Shi, Z., Berger, M.F., Newburger, D.E., Saulrieta, K., Smith, Z., Shah, M.V., Radhakrishnan, M. et al. (2009) High-resolution DNA-binding specificity analysis of yeast transcription factors. Genome Res, 19, 556-566.
+<br>13.	Zhao, Y. and Stormo, G.D. Quantitative analysis demonstrates most transcription factors require only simple models of specificity. Nat Biotechnol, 29, 480-483.
+<br>14.	Cherry, J.M., Adler, C., Ball, C., Chervitz, S.A., Dwight, S.S., Hester, E.T., Jia, Y., Juvik, G., Roe, T., Schroeder, M. et al. (1998) SGD: Saccharomyces Genome Database. Nucleic Acids Res, 26, 73-79.
+<br>15.	Lenhard, B. and Wasserman, W.W. (2002) TFBS: Computational framework for transcription factor binding site analysis. Bioinformatics, 18, 1135-1136.
+<br>16.	Marstrand, T.T., Frellsen, J., Moltke, I., Thiim, M., Valen, E., Retelska, D. and Krogh, A. (2008) Asap: a framework for over-representation statistics for transcription factor binding sites. PLoS One, 3, e1623.
+<br>17.	Wang, T. and Stormo, G.D. (2003) Combining phylogenetic data with co-regulated genes to identify regulatory motifs. Bioinformatics, 19, 2369-2380.
+<br>18.	Hertz, G.Z. and Stormo, G.D. (1999) Identifying DNA and protein patterns with statistically significant alignments of multiple sequences. Bioinformatics, 15, 563-577.
+<br>19.	Hope, I.A. and Struhl, K. (1987) GCN4, a eukaryotic transcriptional activator protein, binds as a dimer to target DNA. EMBO J, 6, 2781-2784.
+<br>20.	Yu, J., Madison, J.M., Mundlos, S., Winston, F. and Olsen, B.R. (1998) Characterization of a human homologue of the Saccharomyces cerevisiae transcription factor spt3 (SUPT3H). Genomics, 53, 90-96.
+<br>21.	Chodosh, L.A., Olesen, J., Hahn, S., Baldwin, A.S., Guarente, L. and Sharp, P.A. (1988) A yeast and a human CCAAT-binding protein have heterologous subunits that are functionally interchangeable. Cell, 53, 25-35.
+</small>
+	</div>
+	<div id="footer">
+		<a href="/ScerTF/">Return to Welcome Page</a>
+	</div>
+	</form>
+	</div>
+	<img id="bottom" src="{{ TEMPLATE_URL }}bottom.png" alt="">
+	</body>
+</html>

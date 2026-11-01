@@ -1,0 +1,66 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<!----Aaron Spivak ---->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>ScerTF</title>
+<link rel="stylesheet" type="text/css" href="{{ TEMPLATE_URL }}form.css" media="all">
+<script type="text/javascript" src="{{ TEMPLATE_URL }}form.js"></script>
+
+</head>
+<body id="main_body" >
+	
+	<img id="top" src="{{ TEMPLATE_URL }}top.png" alt="">
+	<div id="form_container"><table align="center">
+	  <tr>
+	    <td width="120"><a href="/ScerTF/"><center>Home</center></a></td>
+		<td width="120"><a href="/ScerTF/browse/"><center>Browse</center></a></td>
+		<td width="120"><a href="/ScerTF/download/"><center>Download</center></a></td>
+		<td width="120"><a href="/ScerTF/about/"><center>About</center></a></td>
+		<td width="120"><a href="/ScerTF/references/"><center>Data Sources</center></a></td>
+	  </tr></table>
+	</div>
+	<div id="form_container">
+	<h1>ScerTF</h1>
+	<form enctype="multipart/form-data" method="get" action="/ScerTF/search/">
+	<div class="form_description">
+		<center><h2>ScerTF</h2></center>
+<h3>The entire database of optimal matrices selected for all S. cerevisiae transcription factors is available for download here.  Each matrix included in this collection was chosen based on its discriminative ability to correctly identify bound and unbound probes in the Harbison ChIP-chip dataset as well as its information content and agreement with corroborating evidence in the literature.  </h3>
+The downloadable collection provides DNA binding models as position-specific count matrices, position-specific frequency matrices, and position-specific weight matrices for convenience.  
+<br>
+<center><a href="{{ STATIC_URL }}recommended.zip">Download Optimal Matrix Collection </a></center>
+<br><br>
+<strong>Also available is a list of optimal cutoffs to use when searching for potential regulatory sequences.  </strong >Position weight matrices provide a score for any input sequence; a high score indicates that the sequence is a good match to the position weight matrix. Because transcription factors can bind degenerate sequences with a range of scores, it is necessary to select a cutoff to use when scoring a sequence to discriminate potential regulatory sequences from the background genomic sequence.  An optimal cutoff was identified for each position weight matrix that provides the greatest discriminative power to distinguish between bound and unbound sequences in available ChIP experiments.   For each weight matrix, we searched over a range of cutoff values to use in predicting whether a given probe would be bound by a transcription factor or not, and selected the cutoff that gave the most significant p-value in a fisher’s exact test. 
+<br>
+<center><a href="{{ STATIC_URL }}recommended.cutoffs">Download Optimal Cutoffs for Optimal Matrix Collection </a></center>
+<br><br>
+<strong>We have also calculated optimal cutoffs to use for each position weight matrix in every dataset included in this collection.  </strong >
+<br>
+<center><a href="{{ STATIC_URL }}all.cutoffs">Download Optimal Cutoffs for All Matrices curated in this collection </a></center>
+<br><br>
+<strong>Individual datasets assimilated in this collection are available for download from their respective sources.  Links to the literature and the datasets are provided below:</strong >
+<br>
+<br>
+<table border="0" cellpadding="3" cellspacing="5" align="center">
+<tr><td><strong><u>Reference</strong></u></td><td><strong><u>Data Source</strong></u></td></tr>
+<tr><td><a href="http://www.ncbi.nlm.nih.gov/pubmed/19111667">Badis et. al.</a></td><td><a href="http://hugheslab.ccbr.utoronto.ca/supplementary-data/yeastDBD/"> Hughes Lab Data</a></td></tr>
+<tr><td><a href="http://www.ncbi.nlm.nih.gov/pubmed/17947326">Foat et. al.</a></td><td><a href="http://bussemaker.bio.columbia.edu:8080/YeastTransfactomeDB/"> Transfactome</a></td></tr>
+<tr><td><a href="http://www.ncbi.nlm.nih.gov/pubmed/15343339">Harbison et. al.</a></td><td><a href="http://fraenkel.mit.edu/Harbison/"> Harbison et al. Supplemental Data</a></td></tr>
+<tr><td><a href="http://www.ncbi.nlm.nih.gov/pubmed/16522208">Macisaac et. al</a></td><td><a href="http://fraenkel.mit.edu/improved_map/"> Macisaac et. al. Supplemental Data</a></td></tr>
+<tr><td><a href="http://www.ncbi.nlm.nih.gov/pubmed/17438293">Morozov et. al.</a></td><td><a href="http://www.physics.rutgers.edu/~morozov/"> Author Website</a></td></tr>
+<tr><td><a href="http://www.ncbi.nlm.nih.gov/pubmed/17130146">Pachkov et al</a></td><td><a href="http://www.swissregulon.unibas.ch/cgi-bin/regulon" > SwissRegulon</a></td></tr>
+<tr><td><a href="http://www.ncbi.nlm.nih.gov/pubmed/12520026">TRANSFAC</a></td><td><a href=" http://www.gene-regulation.com"> http://www.gene-regulation.com</a></td></tr>
+<tr><td><a href="http://www.ncbi.nlm.nih.gov/pubmed/21654662">Zhao Y and GD Stormo</a></td><td><a href="http://ural.wustl.edu/~zhaoy/beeml/"> BEEML Homepage</a></td></tr>
+<tr><td><a href="http://www.ncbi.nlm.nih.gov/pubmed/10487868">Zhu J and MQ Zhang</a></td><td><a href="http://rulai.cshl.edu/SCPD/"> SCPD</a></td></tr>
+<tr><td><a href="http://www.ncbi.nlm.nih.gov/pubmed/19158363">Zhu et. al.</a></td><td><a href="http://the_brain.bwh.harvard.edu/uniprobe/">Uniprobe</a></td></tr>
+</table>
+
+	</div>
+	<div id="footer">
+		<a href="/ScerTF/">Return to Welcome Page</a>
+	</div>
+	</form>
+	</div>
+	<img id="bottom" src="{{ TEMPLATE_URL }}bottom.png" alt="">
+	</body>
+</html>

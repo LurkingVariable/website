@@ -1,0 +1,58 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<!----Aaron Spivak ---->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>ScerTF</title>
+<link rel="stylesheet" type="text/css" href="{{ TEMPLATE_URL }}form.css" media="all">
+<script type="text/javascript" src="{{ TEMPLATE_URL }}form.js"></script>
+
+</head>
+<body id="main_body" >
+	
+	<img id="top" src="{{ TEMPLATE_URL }}top.png" alt="">
+	<div id="form_container"><table align="center">
+	  <tr>
+	    <td width="120"><a href="/ScerTF/"><center>Home</center></a></td>
+		<td width="120"><a href="/ScerTF/browse/"><center>Browse</center></a></td>
+		<td width="120"><a href="/ScerTF/download/"><center>Download</center></a></td>
+		<td width="120"><a href="/ScerTF/about/"><center>About</center></a></td>
+		<td width="120"><a href="/ScerTF/references/"><center>Data Sources</center></a></td>
+	  </tr></table>
+	</div>
+	<div id="form_container">
+	<h1>ScerTF</h1>
+	<div class="form_description">
+	<center><h2>ScerTF</h2></center>
+    <h4>The table below describes all of the transcription factors curated in the database. The position specific matrix provided for each TF has been selected as the best available representation of the DNA binding specificity for that transcription factor.  <a href="/ScerTF/about/">For information about selection criteria click here.</a>   
+	<br><br>For performance benchmarks of all the matrices annotated to particular transcription factor, click on the name of that transcription factor in the left column or simply click on the TF logo.</h4>
+	</div>						
+{% if mxs %}
+	<table border="1" cellpadding="1" cellspacing="2" align="center">
+	<tr>
+	  <td width="50"><center><strong>TF</strong><br></center></td>
+      <td width="550"><center><strong>Matrix Information</strong></center></td>
+    </tr>
+    {% for mx in mxs %}
+      <tr>
+	    <td width="50" rowspan="2"><center><a href="/ScerTF/details/{{mx.name}}/">{{ mx.name }}</a></center></td>
+        <td width="550"><center><a href="/ScerTF/details/{{mx.name}}/"><img src= " {{ STATIC_URL }}{{ mx.logofile }}"></a></center></td>
+	  </tr>
+      <tr>
+	    <td width="550" colspan="1">
+		<strong><center>Recommended Position Specific Matrix for {{mx.name}} comes from <a href="{{ mx.ref }}">{{mx.source}}</a></center></strong><br>
+		<strong>{{mx.name}}:</strong> {% if mx.description %}{{mx.description}}{% else %}Function Unknown{% endif %}
+		<br><strong>Aliases:</strong> {% if mx.alias %}{{mx.alias}}{% else %}No Aliases{% endif %}
+		<br><a href="http://www.yeastgenome.org/cgi-bin/locus.fpl?locus={{mx.name}}">For More information on {{mx.name}} visit SGD</a>
+		</td>
+	  </tr>
+    {% endfor %}
+	</table>
+{% else %}
+    <p>No TFs matched your search criteria.</p>
+{% endif %}
+
+	</div>
+	<img id="bottom" src="{{ TEMPLATE_URL }}bottom.png" alt="">
+	</body>
+</html>

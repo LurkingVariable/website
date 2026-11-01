@@ -1,0 +1,50 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<!----Aaron Spivak ---->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>ScerTF</title>
+<link rel="stylesheet" type="text/css" href="{{ TEMPLATE_URL }}long_form.css" media="all">
+<script type="text/javascript" src="{{ TEMPLATE_URL }}long_form.js"></script>
+
+</head>
+<body id="main_body" >
+	
+	<img id="top" src="{{ TEMPLATE_URL }}top.png" alt="">
+	<div id="form_container"><table align="center">
+	  <tr>
+	    <td width="120"><a href="/ScerTF/"><center>Home</center></a></td>
+		<td width="120"><a href="/ScerTF/browse/"><center>Browse</center></a></td>
+		<td width="120"><a href="/ScerTF/download/"><center>Download</center></a></td>
+		<td width="120"><a href="/ScerTF/about/"><center>About</center></a></td>
+		<td width="120"><a href="/ScerTF/references/"><center>Data Sources</center></a></td>
+	  </tr></table>
+	</div>
+	<div id="form_container">
+	<h1>ScerTF</h1>
+    <form enctype="multipart/form-data" method="get" action="/ScerTF/matrix/">
+{% if bests %}
+	<center><h2>TF-TF Interactions for {{ query }}</strong></h2></center>
+	<p>The Figures below describe regulatory interactions between transcription factors identified using the matrices compiled in ScerTF.  We used the optimal cutoffs calculated for each matrix and identified instances where regulatory elements co-occurred within a 25 nucleotide window.  We then analyzed gene expression data to determine if the predicted target genes were more coherently expressed than would be expected by chance.   Three expression datasets were used to determine if predicted target genes of both CREs were co-expressed across multiple cell cycle time points, environmental conditions, or gene deletion conditions.  A Pearson’s correlation coefficient (PCC) was calculated for all pairs of predicted target genes to determine the similarity of gene expression profiles for the target genes.  The distribution of PCC values for predicted targets of the CRE combination was compared to that of the targets in which each CRE is predicted to act alone.  Differences between the distributions were assessed using a Mann-Whitney-Wilcoxon test.  
+    <p>The yellow line depicts the distribution of correlation coefficients calculated between gene expression profiles for each pair of target genes predicted to be regulated by the denoted combination.  The black and purple lines relate the distribution of correlations for target genes predicted to be regulated by each factor acting alone.  Expression profiles of target genes regulated by the combination are significantly more correlated than the expression profiles of genes regulated by each factor independently. 
+
+	<br><br>
+	Environmental Stress Conditions: <a href="http://www.ncbi.nlm.nih.gov/pubmed/11102521">Gasch, A.P., Spellman, P.T., Kao, C.M., Carmel-Harel, O., Eisen, M.B., Storz, G., Botstein, D. and Brown, P.O. (2000) Genomic expression programs in the response of yeast cells to environmental changes. Mol Biol Cell, 11, 4241-4257.</a>
+	<br><br>
+	Gene Deletion Stress Conditions: <a href="http://www.ncbi.nlm.nih.gov/pubmed/10929718">Hughes, T.R., Marton, M.J., Jones, A.R., Roberts, C.J., Stoughton, R., Armour, C.D., Bennett, H.A., Coffey, E., Dai, H., He, Y.D. et al. (2000) Functional discovery via a compendium of expression profiles. Cell, 102, 109-126.</a>
+ 	<br><br>
+	Cell Cycle Conditions: <a href="http://www.ncbi.nlm.nih.gov/pubmed/16912276">Pramila, T., Wu, W., Miles, S., Noble, W.S. and Breeden, L.L. (2006) The Forkhead transcription factor Hcm1 regulates chromosome segregation genes and fills the S-phase gap in the transcriptional circuitry of the cell cycle. Genes Dev, 20, 2266-2278.</a>
+    </p>
+	<table border="1" cellpadding="1" cellspacing="2" align="center">
+    {% for mx in bests %}
+	{% for pair in pairs %}
+	<tr><td width="750"><center><strong>{{ pair }}</strong></center><center><a href="{{ STATIC_URL }}pairs/{{ pair }}.jpg"><img src="{{ STATIC_URL }}pairs/{{ pair }}.jpg" width="720" height="450"></a></center></td></tr>
+    {% endfor %}
+	{% endfor %}
+	</table>
+    </form>	
+{% endif %}
+	</div>
+	<img id="bottom" src="{{ TEMPLATE_URL }}bottom.png" alt="">
+	</body>
+</html>
