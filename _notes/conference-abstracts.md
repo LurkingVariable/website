@@ -18,6 +18,10 @@ Crofts TS, Wang B, Spivak A, Gianoulis TA, Gibbons HS, Gibson MK, Forsberg KJ, D
 
 The 2016–2019 items are meeting versions of the 2018 *Nature Chemical Biology* and 2017 *Genome Announcements* papers; Terence Crofts was the presenter.
 
+## 2015
+
+Wang Z, Spivak A, Miller B, Tal-Singer R, Bafadhel M, Haldar K, Ramsheh M, Barer M, Brightling C, Brown JR (GSK Computational Biology; GSK Respiratory; Oxford; Leicester). Lung Microbiome Dynamics in Chronic Obstructive Pulmonary Disease (COPD) Exacerbations. Abstract, COPD9USA, Chicago, IL, June 2015. Printed in Yawn B et al., COPD9USA June 2015 abstracts, *Chronic Obstr Pulm Dis (J COPD F)* 2015;2(4):343–366 (this abstract pp. 356–357), collection doi:[10.15326/jcopdf.2.4.2015.0147](https://doi.org/10.15326/jcopdf.2.4.2015.0147); [PMC5556829](https://pmc.ncbi.nlm.nih.gov/articles/PMC5556829/). Presenter and format not stated. Meeting version of Wang et al., *Eur Respir J* 2016;47:1082–1092.
+
 ## 2014
 
 Arat S (presenting; Virginia Tech), Spivak A, Ingraham K, Van Horn S, Thomas E, Traini C, Sathe G, Aubart K, Holmes D, Naderer O, Brown J (GSK). A Microbiome Analysis Pipeline for Antibiotic Clinical Trials. Poster, session PP2, 2014 SIAM Annual Meeting (AN14), Palmer House Hilton, Chicago, IL, July 7–11, 2014 (shown Wed July 9). Source: [SIAM session listing](https://meetings.siam.org/sess/dsp_talk.cfm?p=66372) (found by Researchy; page blocks automated access, not re-opened here).
