@@ -20,6 +20,8 @@ The 2016–2019 items are meeting versions of the 2018 *Nature Chemical Biology*
 
 ## 2014
 
+Arat S (presenting; Virginia Tech), Spivak A, Ingraham K, Van Horn S, Thomas E, Traini C, Sathe G, Aubart K, Holmes D, Naderer O, Brown J (GSK). A Microbiome Analysis Pipeline for Antibiotic Clinical Trials. Poster, session PP2, 2014 SIAM Annual Meeting (AN14), Palmer House Hilton, Chicago, IL, July 7–11, 2014 (shown Wed July 9). Source: [SIAM session listing](https://meetings.siam.org/sess/dsp_talk.cfm?p=66372) (found by Researchy; page blocks automated access, not re-opened here).
+
 Napolitano A, Miller S, Spivak A, Rajpal D, Brown JR, Nunez DJ. Novel Pharmacologies of Metformin in the Gut: Insights from a Washout/Redosing Paradigm in Type 2 Diabetes. Poster 1044-P, 74th Scientific Sessions of the American Diabetes Association, San Francisco, CA, June 13–17, 2014. *Diabetes* 2014;63(Suppl. 1) (pages A269–A270 per secondary sources, unverified). Also reprinted in *Nederlands Tijdschrift voor Diabetologie* 12(4):21, 2014, doi:[10.1007/s12467-014-0044-z](https://doi.org/10.1007/s12467-014-0044-z). Meeting version of the 2014 *PLoS One* paper (doi:10.1371/journal.pone.0100778).
 
 ## 2010
@@ -28,10 +30,19 @@ Spivak AT, Stormo GD (Department of Genetics, Washington University in St. Louis
 
 ## 2002
 
-Paradise C, Gage M, Spivak A (Davidson College). Effects of land use on insect communities in headwater streams north of Charlotte, NC. Abstract no. 175, 63rd Annual Meeting of the Association of Southeastern Biologists, Appalachian State University, Boone, NC, April 10–13, 2002. *Southeastern Biology* 49(2):174–175, April 2002. No DOI or PubMed ID.
+Paradise C, Gage M, Spivak A (Davidson College). Effects of land use on insect communities in headwater streams north of Charlotte, NC. Oral paper 174 (printed abstract no. 175), Aquatic, Wetland and Marine Ecology session, Fri April 12, 63rd Annual Meeting of the Association of Southeastern Biologists, Appalachian State University, Boone, NC, April 10–13, 2002. *Southeastern Biology* 49(2):174–175, April 2002. No DOI or PubMed ID.
 
-This is the meeting presentation that preceded the 2004 paper: Gage MS, Spivak A, Paradise CJ. *Southeastern Naturalist* 3(2):345–358, doi:10.1656/1528-7092(2004)003[0345:EOLUAD]2.0.CO;2.
+Spivak A, Gage M, Paradise C. Effects of land use and disturbance on insect communities in headwater streams north of Charlotte, North Carolina. 2002 Davidson College Joint Science Symposium, Davidson, NC (Aaron first author). Source: [Davidson 2002 student abstracts](https://bio.davidson.edu/old_site/student/Abstracts2002.html).
+
+Both 2002 presentations preceded the 2004 paper: Gage MS, Spivak A, Paradise CJ. *Southeastern Naturalist* 3(2):345–358, doi:10.1656/1528-7092(2004)003[0345:EOLUAD]2.0.CO;2.
 
 ## Possible, not confirmed
 
 - November 2001, Sigma Xi Annual Meeting, Raleigh, NC: "Effects of land use on insects in streams north of Charlotte, NC," M. Gage presenting (Paradise CV). Spivak not named.
+- 2012 Yeast Genetics Meeting, Princeton: abstract book unavailable (404); not on presenting-author list.
+
+## Checked and not his
+
+- ICAAC 2013 abstract G-1251 (cited by the 2015 AAC GSK2251052 paper): Spivak not an author.
+- Jim Brown's 2015–2018 invited microbiome talks: Brown sole presenter.
+- CSHL Protein Purification & Characterization course, April 2008: a course, not a presentation.
