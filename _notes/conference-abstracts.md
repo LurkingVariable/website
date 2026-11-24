@@ -22,6 +22,10 @@ The 2016–2019 items are meeting versions of the 2018 *Nature Chemical Biology*
 
 Napolitano A, Miller S, Spivak A, Rajpal D, Brown JR, Nunez DJ. Novel Pharmacologies of Metformin in the Gut: Insights from a Washout/Redosing Paradigm in Type 2 Diabetes. Poster 1044-P, 74th Scientific Sessions of the American Diabetes Association, San Francisco, CA, June 13–17, 2014. *Diabetes* 2014;63(Suppl. 1) (pages A269–A270 per secondary sources, unverified). Also reprinted in *Nederlands Tijdschrift voor Diabetologie* 12(4):21, 2014, doi:[10.1007/s12467-014-0044-z](https://doi.org/10.1007/s12467-014-0044-z). Meeting version of the 2014 *PLoS One* paper (doi:10.1371/journal.pone.0100778).
 
+## 2010
+
+Spivak AT, Stormo GD (Department of Genetics, Washington University in St. Louis). Identifying phylogenetically-conserved combinations of cis-regulatory elements from unaligned genomes. Poster 513C (Aaron presenting), Global Analysis: Informatics/Computational Biology session, 2010 Yeast Genetics and Molecular Biology Meeting (Genetics Society of America), University of British Columbia, Vancouver, BC, Canada, July 27–August 1, 2010; presented Thursday, July 29, 2010. Abstract on p. 203 of the program book. Sources: [presenting-author list](http://www.yeast-meet.org/2010/abstracts/assignments/S.shtml); [program book (Wayback copy)](https://web.archive.org/web/20240331001150/http://www.yeast-meet.org/2010/pdf/book.pdf). Meeting version of the dissertation work and 2016 *G3* paper.
+
 ## 2002
 
 Paradise C, Gage M, Spivak A (Davidson College). Effects of land use on insect communities in headwater streams north of Charlotte, NC. Abstract no. 175, 63rd Annual Meeting of the Association of Southeastern Biologists, Appalachian State University, Boone, NC, April 10–13, 2002. *Southeastern Biology* 49(2):174–175, April 2002. No DOI or PubMed ID.
